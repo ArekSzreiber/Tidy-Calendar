@@ -1,0 +1,15 @@
+<form action="{{ url_for('route_load') }}" method="POST" class="hidden-md">
+    <fieldset >
+        <div class="form-group col-md-9">
+            <input
+                type="url"
+                id="urlInput"
+                class="form-control"
+                placeholder="Calendar URL input"
+                name="calendar-url"
+            >
+        </div>
+        <button type="submit" class="btn btn-dark">Load calendar</button>
+    </fieldset>
+</form>
+

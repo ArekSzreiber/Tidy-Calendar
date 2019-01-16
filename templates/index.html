@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% set page_title = 'Tidy Calendar' %}
+
+
+{% block content %}
+    <div id="content">
+        <a href="{{ url_for('route_index') }}">
+            <h1 class="h1">Tidy Calendar</h1>
+        </a>
+        {% include 'load-calendar.html' %}
+        {% include 'filter-calendar.html' %}
+    </div>
+
+
+{% endblock %}
+
+
+

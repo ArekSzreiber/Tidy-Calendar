@@ -1,0 +1,22 @@
+
+
+
+<form action="{{ url_for('route_filter') }}" method="POST" class="hidden-md">
+    {% if usernames is none %}
+    <fieldset disabled>
+    {% else %}
+    <fieldset>
+    {% endif %}
+        <div class="form-group col-md-3" >
+            <select name="username" class="form-control">
+                <option disabled selected hidden>Select username</option>
+                {% if usernames is not none %}
+                    {% for username in usernames %}
+                        <option  value="{{ username }}">{{ username }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+    <button type="submit" class="btn btn-dark">Filter calendar</button>
+    </fieldset>
+</form>

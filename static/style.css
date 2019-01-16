@@ -1,0 +1,41 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 600px;
+}
+
+body {
+    color: black;
+    background-color: #bbb;
+    font-family: 'Roboto', sans-serif;
+}
+
+a, a:link, a:visited, a:hover, a:active{
+    color: #181818 !important;
+    text-decoration: none;
+}
+
+#content{
+    height: 500px;
+}
+
+footer{
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    border-top: 1px solid black;
+    background-color: #555;
+    position: fixed;
+    bottom: 0;
+}
+
+h1, form {
+    margin: 30px;
+}
+
+.btn{
+    background-color: black;
+}
+
