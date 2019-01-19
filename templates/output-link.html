@@ -1,0 +1,20 @@
+<form>
+    {% if output_url is defined %}
+    <fieldset >
+    {% else %}
+    <fieldset disabled>
+    {% endif %}
+        <div class="form-group col-md-9" >
+            <input
+                name="output-url"
+                {% if output_url is defined %}
+                    value="{{ output_url }}"
+                {% else %}
+                    placeholder="Filtered calendar URL"
+                {% endif %}
+                 class="form-control"
+            >
+        </div>
+    </fieldset>
+</form>
+

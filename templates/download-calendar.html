@@ -1,11 +1,8 @@
-
-
-
-<form action="{{ url_for('route_filter') }}" method="POST" class="hidden-md">
-    {% if usernames is none %}
-    <fieldset disabled>
+<form action="{{ url_for('route_download') }}" method="POST" class="hidden-md">
+    {% if usernames is defined %}
+    <fieldset >
     {% else %}
-    <fieldset>
+    <fieldset disabled>
     {% endif %}
         <div class="form-group col-md-3" >
             <select name="username" class="form-control">
@@ -17,6 +14,10 @@
                 {% endif %}
             </select>
         </div>
-    <button type="submit" class="btn btn-dark">Download calendar</button>
+    <!-- Tu tylko składam url i wypierdalam go na pole tekstowe, żeby użytkownik sam sobie skopiował -->
+    <button type="submit" name="action" value="generate" class="btn btn-dark">Generate link</button>
+    <!-- Tu tylko składam url i wypierdalam go na pole tekstowe, żeby użytkownik sam sobie skopiował -->
+    <button type="submit" name="action" value="download" class="btn btn-dark">Download calendar</button>
     </fieldset>
 </form>
+<!-- można ajaxem zrobić, żeby nie trzeba było wciskać przycisku do "load" -->
