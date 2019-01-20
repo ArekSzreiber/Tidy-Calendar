@@ -81,6 +81,7 @@ def make_filtered_calendar(calendar_text, username):
 def compress_calendar_url(calendar_url):
     """
     removes part of URL which is common every Trello calendar
+    Will not work if Trello will change its host name
     :param calendar_url: original calendar URL
     :return: compressed URL, string
     """
@@ -91,6 +92,7 @@ def compress_calendar_url(calendar_url):
 def amplify_calendar_url(compressed_url):
     """
     adds part of URL which is common for every Trello calendar
+    Will not work if Trello will change its host name
     :param compressed_url: string
     :return: string
     """

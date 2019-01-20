@@ -6,7 +6,7 @@
     {% endif %}
         <div class="form-group col-md-3" >
             <select name="username" class="form-control">
-                <option disabled selected hidden>Select username</option>
+                <option disabled selected hidden>Please select username</option>
                 {% if usernames is not none %}
                     {% for username in usernames %}
                         <option  value="{{ username }}">{{ username }}</option>

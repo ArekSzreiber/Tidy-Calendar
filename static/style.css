@@ -39,3 +39,8 @@ h1, form {
     background-color: black;
 }
 
+#outputField, #copyButton{
+    float: left;
+    display: block;
+}
+

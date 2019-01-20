@@ -7,6 +7,9 @@
                 class="form-control"
                 placeholder="Please insert a valid calendar URL"
                 name="calendar-url"
+                {% if input_url is defined %}
+                    value="{{ input_url }}"
+                {% endif %}
             >
         </div>
         <button type="submit" class="btn btn-dark">Load calendar</button>

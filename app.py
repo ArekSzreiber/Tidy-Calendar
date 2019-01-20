@@ -5,16 +5,23 @@ app = Flask(__name__)
 
 app.secret_key = b'\x12\x06\x97O\x8aaw\xadW\x18\xa7\x08%n\x7f\x1a_\xb6\xe03\xf3\xe4\x9f'
 
-"""
-TODO pod [Generate link] wpierdolić jakiegoś dziawaskripta, który wpierdoli 
-wygenerowany link do inputa [Filtered calendar URL]
-"""
+
+def make_download_response(filtered_calendar):
+    response = make_response(str(filtered_calendar))
+    response.headers['content-type'] = "text/calendar; charset=utf-8"
+    response.headers['cache-control'] = "no-storage, no-cache, must-revalidate, proxy-revalidate"
+    response.headers['etag'] = 'W/"filtered-calendar.ics"'
+    return response
+
 @app.route('/', methods=["GET", "POST"])
 def route_index():
     if request.method == 'POST':  # show usernames
         usernames = request.args.get('usernames', '')
         usernames = usernames.split(',')
-        return render_template('index.html', usernames=usernames)
+        input_url = request.args.get('input_url', '')
+        return render_template('index.html',
+                               usernames=usernames,
+                               input_url=input_url)
 
     if request.method == "GET":
         username = request.args.get('username', False)
@@ -23,11 +30,7 @@ def route_index():
             calendar_url = calendar.amplify_calendar_url(calendar_url)
             calendar_text = calendar.load_calendar(calendar_url)
             filtered_calendar = calendar.make_filtered_calendar(calendar_text, username)
-            response = make_response(str(filtered_calendar))
-            response.headers['content-type'] = "text/calendar; charset=utf-8"
-            response.headers['cache-control'] = "no-storage, no-cache, must-revalidate, proxy-revalidate"
-            response.headers['etag'] = "filtered-calendar.ics"
-            return response
+            return make_download_response(filtered_calendar)
         else:  # show just start page
             return render_template('index.html')
 
@@ -40,7 +43,11 @@ def route_load():
     if calendar_text:
         usernames = calendar.extract_usernames(calendar_text)
         usernames = ','.join(usernames)
-        return redirect(url_for('route_index', usernames=usernames), code=307)
+        session['usernames'] = usernames
+        return redirect(url_for('route_index',
+                                usernames=session['usernames'],
+                                input_url=calendar_url
+                                ), code=307)
     else:
         return redirect(url_for('route_index'))
 
@@ -49,27 +56,24 @@ def route_load():
 def route_download():
     username = request.form.get('username', '')
     action = request.form.get('action', '')
-    calendar_url = session.get('calendar_url', '')
-    calendar_url = calendar.compress_calendar_url(calendar_url)
+    input_url = session.get('calendar_url', '')
+    calendar_url = calendar.compress_calendar_url(input_url)
     if action == 'generate':
         generated_url_query_string = request.host_url
         generated_url_query_string += url_for('route_index', username=username, calendar=calendar_url)
+        usernames = session.get('usernames', '').split(',')
         return render_template('index.html',
-                               username=username,
-                               calendar=calendar_url,
-                               output_url=generated_url_query_string)
-        #TODO: żeby wstawiało te zmienne w stronę i można było x-ileś razy generowac link za jednym zamachem
-
-        #return redirect(url_for('route_index',
-        #                        username=username,
-        #                        calendar=calendar_url,
-        #                        output_url=generated_url_query_string))
-        # query_url = calendar.assemble_query_url(calendar_url, username)
-        # return render_template('index.html', output_url=query_url, )
+                                username=username,
+                                calendar=calendar_url,
+                                output_url=generated_url_query_string,
+                                input_url=input_url,
+                                usernames=usernames)
     elif action == 'download':
-        return redirect(url_for('route_index', username=username, calendar=calendar_url))
+        return redirect(url_for('route_index',
+                                username=username,
+                                calendar=calendar_url))
     else:
-        return "Błąd"
+        return "Unknown action"
 
 
 if __name__ == '__main__':

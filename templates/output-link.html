@@ -1,19 +1,26 @@
 <form>
     {% if output_url is defined %}
-    <fieldset >
+    <fieldset>
     {% else %}
     <fieldset disabled>
     {% endif %}
-        <div class="form-group col-md-9" >
-            <input
-                name="output-url"
-                {% if output_url is defined %}
-                    value="{{ output_url }}"
-                {% else %}
-                    placeholder="Filtered calendar URL"
-                {% endif %}
-                 class="form-control"
-            >
+
+        <div class="form-row" >
+            <div class="col-1">
+                <button type="button" id="copyButton" value="copy" class="btn btn-dark">Copy link</button>
+            </div>
+            <div class="col-10">
+                <input
+                    name="output-url"
+                    {% if output_url is defined %}
+                        value="{{ output_url }}"
+                    {% else %}
+                        placeholder="Filtered calendar URL"
+                    {% endif %}
+                     class="form-control"
+                    id="outputField"
+                >
+            </div>
         </div>
     </fieldset>
 </form>
