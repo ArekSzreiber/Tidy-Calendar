@@ -1,3 +1,11 @@
+
+{% if output_url is defined %}
+    {% block head %}
+        <script type="text/javascript" src="{{ url_for('static', filename='clipboard.js') }}" defer></script>
+    {% endblock %}
+{% endif %}
+
+
 <form>
     {% if output_url is defined %}
     <fieldset>
