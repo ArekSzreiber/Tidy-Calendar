@@ -6,8 +6,6 @@ function copyToClipboard(){
     document.execCommand("copy");
 }
 
-let outputUrlField = document.getElementById("outputField");
-
 let clipboardButton = document.getElementById("copyButton");
 
 clipboardButton.addEventListener("click", copyToClipboard);
