@@ -79,8 +79,8 @@ def make_filtered_calendar(calendar_text, username):
 
 def compress_calendar_url(calendar_url):
     """
-    removes part of URL which is common every Trello calendar
-    Will not work if Trello will change its host name
+    removes part of URL which is common for every Trello calendar
+    Would not work if calendar path will change
     :param calendar_url: original calendar URL
     :return: compressed URL, string
     """
