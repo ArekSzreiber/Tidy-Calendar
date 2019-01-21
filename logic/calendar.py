@@ -3,7 +3,6 @@ from re import findall, compile, sub
 
 TRELLO_CAL_URL = 'https://trello.com/calendar/'
 EXTENSION = '.ics'
-#to na dole wyrzucić //nwm, jak to przeczytałem następnego dnia to nie wiedziałem o co chodzi
 
 
 def load_calendar(url):
@@ -92,20 +91,9 @@ def compress_calendar_url(calendar_url):
 def amplify_calendar_url(compressed_url):
     """
     adds part of URL which is common for every Trello calendar
-    Will not work if Trello will change its host name
+    Would not work if calendar path will change
     :param compressed_url: string
     :return: string
     """
     return TRELLO_CAL_URL+compressed_url+EXTENSION
 
-# obczaić webpacka
-
-
-
-
-
-if __name__ == '__main__':
-    mock_url = "https://trello.com/calendar/5b7d6f65755e404dfcc59bdb/5b83f1f958983c8d48ce32aa/4415599e33db400f7f6d7dc3ffecb1b5.ics"
-    mock_username = "aszreiber"
-
-    print(compress_calendar_url(mock_url))
