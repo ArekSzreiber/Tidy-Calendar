@@ -13,6 +13,7 @@ def make_download_response(filtered_calendar):
     response.headers['etag'] = 'W/"filtered-calendar.ics"'
     return response
 
+
 @app.route('/', methods=["GET", "POST"])
 def route_index():
     if request.method == 'POST':  # show usernames
@@ -63,11 +64,11 @@ def route_download():
         generated_url_query_string += url_for('route_index', username=username, calendar=calendar_url)
         usernames = session.get('usernames', '').split(',')
         return render_template('index.html',
-                                username=username,
-                                calendar=calendar_url,
-                                output_url=generated_url_query_string,
-                                input_url=input_url,
-                                usernames=usernames)
+                               username=username,
+                               calendar=calendar_url,
+                               output_url=generated_url_query_string,
+                               input_url=input_url,
+                               usernames=usernames)
     elif action == 'download':
         return redirect(url_for('route_index',
                                 username=username,
