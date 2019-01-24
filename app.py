@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, make_response, redirect, request, session
 from logic import calendar
-CALENDAR_FILE_NAME = "raw_calendar.ics"
+
 app = Flask(__name__)
 
 app.secret_key = b'\x12\x06\x97O\x8aaw\xadW\x18\xa7\x08%n\x7f\x1a_\xb6\xe03\xf3\xe4\x9f'
