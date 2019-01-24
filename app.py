@@ -32,7 +32,7 @@ def route_index():
             calendar_text = calendar.load_calendar(calendar_url)
             filtered_calendar = calendar.make_filtered_calendar(calendar_text, username)
             return make_download_response(filtered_calendar)
-        else:  # show just start page
+        else:  # just show start page
             return render_template('index.html')
 
 
