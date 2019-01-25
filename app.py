@@ -60,7 +60,7 @@ def route_download():
     input_url = session.get('calendar_url', '')
     calendar_url = calendar.compress_calendar_url(input_url)
     if action == 'generate':
-        generated_url_query_string = request.host_url
+        generated_url_query_string = request.host_url[:-1]  # to skip over trailing slash
         generated_url_query_string += url_for('route_index', username=username, calendar=calendar_url)
         usernames = session.get('usernames', '').split(',')
         return render_template('index.html',
