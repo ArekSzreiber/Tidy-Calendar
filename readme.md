@@ -3,7 +3,7 @@
 ## About project
 This application purpose is to get individual calendars from a group calendar.
 
-##Dependencies
+## Dependencies
 - certifi==2018.11.29
 - chardet==3.0.4
 - Click==7.0
