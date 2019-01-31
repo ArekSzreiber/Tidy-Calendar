@@ -1,11 +1,17 @@
+{% if usernames is defined %}
+{% block head %}
+    <script src="{{ url_for('static', filename='buttons.js') }}" defer></script>
+{% endblock %}
+{% endif %}
+
 <form action="{{ url_for('route_download') }}" method="POST" class="hidden-md">
     {% if usernames is defined %}
-    <fieldset >
+    <fieldset>
     {% else %}
     <fieldset disabled>
     {% endif %}
         <div class="form-group col-md-3" >
-            <select name="username" class="form-control">
+            <select id="usernameSelect" name="username" class="form-control">
                 <option disabled selected hidden>Please select username</option>
                 {% if usernames is not none %}
                     {% for username in usernames %}
@@ -14,8 +20,19 @@
                 {% endif %}
             </select>
         </div>
-    <button type="submit" name="action" value="generate" class="btn btn-dark">Generate link</button>
-    <button type="submit" name="action" value="download" class="btn btn-dark">Download calendar</button>
+            <button id="generateButton"
+                    type="submit"
+                    name="action"
+                    value="generate"
+                    class="btn btn-dark"
+            >Generate link</button>
+            <button id="downloadButton"
+                    type="submit"
+                    name="action"
+                    value="download"
+                    class="btn btn-dark"
+                    disabled
+            >Download calendar</button>
     </fieldset>
 </form>
 <!-- można ajaxem zrobić, żeby nie trzeba było wciskać przycisku do "load" -->
