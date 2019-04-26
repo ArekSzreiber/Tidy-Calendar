@@ -10,7 +10,7 @@ This application purpose is to get individual calendars from a group calendar.
 - Flask==1.0.2
 - idna==2.8
 - itsdangerous==1.1.0
-- Jinja2==2.10
+- Jinja2==2.10.1
 - MarkupSafe==1.1.0
 - requests==2.21.0
 - urllib3==1.25.1
