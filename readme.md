@@ -13,7 +13,7 @@ This application purpose is to get individual calendars from a group calendar.
 - Jinja2==2.10
 - MarkupSafe==1.1.0
 - requests==2.21.0
-- urllib3==1.24.1
+- urllib3==1.25.1
 - Werkzeug==0.14.1
 
 ## Screenshot
